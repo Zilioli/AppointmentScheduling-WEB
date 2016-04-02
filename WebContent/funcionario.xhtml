@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+</h:head>
+<ui:include src="include/header.xhtml"></ui:include>
+<h:body>
+	<h:form>
+		<p:dialog widgetVar="eventDialog" header="Cadastro de Funcionário"
+			showEffect="clip" hideEffect="clip">
+			<h:panelGrid id="cadastro" columns="2">
+				<h:form>
+					<p:outputLabel for="title" value="Nome do Funcionário " />
+					<p:inputText id="title"
+						value="#{funcionario.funcionario.nmFuncionario}" required="true" />
+					<p:commandButton id="btnNovoFuncionario" value="Salvar"
+						actionListener="#{funcionario.createFuncionario}" ajax="true" />
+				</h:form>
+			</h:panelGrid>
+		</p:dialog>
+		<p:panel menuTitle="Lista de Funcionários"
+			header="Lista de Funcionários" style="text-align:center">
+
+			<f:facet name="footer" style="align:center">
+				<div style="align: center">
+					<p:commandButton icon="ui-icon-document"
+						onclick="PF('eventDialog').show();" />
+				</div>
+			</f:facet>
+
+			<p:dataTable var="f" value="#{funcionario.listaFuncionarios}">
+				<p:column headerText="Código Funcionário" width="250"
+					style="text-align:left">
+					<h:outputText value="#{f.funcionario.idFuncionario}" />
+				</p:column>
+				<p:column headerText="Nome Funcionário" style="text-align:left">
+					<h:outputText value="#{f.funcionario.nmFuncionario}" />
+				</p:column>
+				<p:column headerText="Ações" style="text-align:left">
+					<h:form>
+						<p:commandButton id="btnExcluir"
+							actionListener="#{f.destroyWorld}" icon="ui-icon-closethick"
+							update="message">
+							<p:confirm header="Confirma a ação?"
+								message="Deseja realmente Excluir o Registro?"
+								icon="ui-icon-alert" />
+							<f:setPropertyActionListener target="#{f.selectedID}"
+								value="#{f.funcionario.idFuncionario}" />
+						</p:commandButton>
+					&nbsp;
+					<p:commandButton id="withIcon" actionListener="#{f.buttonAction}"
+							type="button" icon="ui-icon-pencil" />
+						<p:growl id="message" showDetail="true" />
+					</h:form>
+				</p:column>
+			</p:dataTable>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

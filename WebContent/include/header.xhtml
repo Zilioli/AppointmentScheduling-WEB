@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+</h:head>
+<ui:composition>
+	<h:form>
+		<b:navBar brand="AGENDA ELETRONICA" brandHref="index.jsf"
+			inverse="true">
+			<b:navbarLinks>
+				<b:navLink value="Agenda" href="schedule.jsf"
+					icon="glyphicon glyphicon-dashboard"></b:navLink>
+				<b:navLink value="Funcionário" href="funcionario.jsf"
+					icon="glyphicon glyphicon-briefcase"></b:navLink>
+				<b:navLink value="Paciente" href="paciente.jsf"
+					icon="glyphicon glyphicon-heart"></b:navLink>
+				<b:navLink value="Procedimento" href="#"
+					icon="glyphicon glyphicon-cog"></b:navLink>
+				<b:navLink value="Usuário" href="#" icon="glyphicon glyphicon-user"></b:navLink>
+				<b:navLink value="Sair" href="#" icon="glyphicon glyphicon-log-out" update="message">
+					<p:confirm header="Confirma a ação?"
+						message="Deseja realmente Excluir o Registro?"
+						icon="ui-icon-alert" />
+					<p:growl id="message" showDetail="true" />
+				</b:navLink>
+			</b:navbarLinks>
+		</b:navBar>
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+
+	</h:form>
+</ui:composition>
+
+</html>
