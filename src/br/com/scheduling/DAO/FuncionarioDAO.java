@@ -31,7 +31,7 @@ public class FuncionarioDAO {
 			session.close(); 
 		} 
 	}
-	
+	//teste gitr
 	@SuppressWarnings("unchecked") 
 	public List<FuncionarioVO> listFuncionario(){ 
 		List<FuncionarioVO> funcionarios = new ArrayList<FuncionarioVO>(); 
